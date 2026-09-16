@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CyberCheck — a privacy-first cybersecurity toolkit with password analysis, URL inspection, scam detection, security scoring and cyber education.">
+<meta name="theme-color" content="#070b12">
+<title>CyberCheck — Security Toolkit</title>
+<style>
+:root{--bg:#070b12;--panel:#0d131d;--panel2:#111a26;--line:#1c2a3b;--text:#edf5ff;--muted:#8ea1b8;--accent:#31e6a1;--accent2:#5aa7ff;--danger:#ff6174;--warn:#ffc857;--shadow:0 18px 50px rgba(0,0,0,.35)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 80% 0%,#102638 0,#070b12 36%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}.container{width:min(1120px,92%);margin:auto}.nav{position:sticky;top:0;z-index:20;background:rgba(7,11,18,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.navin{height:70px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:900;letter-spacing:.5px;font-size:21px}.brand span{color:var(--accent)}.links{display:flex;gap:22px;align-items:center}.links a{color:#b9c8d9;font-size:14px}.links a:hover{color:var(--accent)}.menu{display:none;background:none;border:1px solid var(--line);color:white;border-radius:9px;padding:8px 11px}
+.hero{padding:88px 0 65px;text-align:center}.badge{display:inline-flex;gap:8px;align-items:center;border:1px solid #24433b;background:#0c201b;color:var(--accent);padding:7px 12px;border-radius:999px;font-size:12px;font-weight:800}.hero h1{font-size:clamp(40px,8vw,74px);line-height:1.02;margin:22px auto 18px;max-width:850px}.hero h1 em{font-style:normal;color:var(--accent)}.hero p{max-width:700px;margin:0 auto;color:var(--muted);font-size:17px}.actions{display:flex;justify-content:center;gap:12px;margin-top:28px;flex-wrap:wrap}.btn{border:0;border-radius:11px;padding:12px 18px;font-weight:800;cursor:pointer;background:var(--accent);color:#03110b}.btn.secondary{background:#121d2a;color:#dce9f7;border:1px solid var(--line)}.section{padding:70px 0}.section h2{font-size:32px;margin:0 0 8px}.sub{color:var(--muted);margin-top:0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:linear-gradient(145deg,rgba(17,26,38,.95),rgba(10,15,23,.95));border:1px solid var(--line);border-radius:17px;padding:21px;box-shadow:var(--shadow)}.toolicon{font-size:27px}.card h3{margin:10px 0 5px}.card p{color:var(--muted);font-size:14px;margin:0 0 16px}.open{background:#142333;color:#dce9f7;border:1px solid #263b51;border-radius:9px;padding:9px 12px;font-weight:700;cursor:pointer}.toolbox{margin-top:22px;background:#091019;border:1px solid var(--line);border-radius:17px;padding:20px;display:none}.toolbox.active{display:block}.toolbox textarea,.toolbox input,.toolbox select{width:100%;background:#060a10;border:1px solid #233246;color:white;border-radius:10px;padding:12px;margin:7px 0 12px;outline:none}.toolbox textarea{min-height:120px;resize:vertical}.result{margin-top:12px;padding:14px;border-radius:11px;background:#0d1722;border:1px solid #1d3044;color:#c9d8e8;white-space:pre-wrap}.good{color:var(--accent)}.bad{color:var(--danger)}.warn{color:var(--warn)}.score{font-size:45px;font-weight:900}.features{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:25px}.mini{border:1px solid var(--line);padding:17px;border-radius:13px;background:#0b121b}.mini b{display:block;margin-bottom:4px}.mini span{color:var(--muted);font-size:13px}.faq{max-width:850px}.faq details{border:1px solid var(--line);border-radius:12px;margin:9px 0;background:#0c131d;padding:15px 17px}.faq summary{cursor:pointer;font-weight:800}.faq p{color:var(--muted);margin-bottom:0}.contact{display:grid;grid-template-columns:1fr 1fr;gap:18px}.contactbox{background:#0d141e;border:1px solid var(--line);padding:25px;border-radius:17px}.contact a{color:var(--accent);font-weight:800}.footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13px}.notice{font-size:12px;color:#8397ad;margin-top:10px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:18px;z-index:50}.modal.show{display:flex}.modalbox{width:min(600px,100%);background:#0d141e;border:1px solid var(--line);border-radius:17px;padding:25px;max-height:85vh;overflow:auto}.close{float:right;background:none;border:1px solid var(--line);color:white;border-radius:8px;padding:6px 10px;cursor:pointer}
+@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}.features{grid-template-columns:1fr 1fr}.contact{grid-template-columns:1fr}.links{display:none}.links.show{display:flex;position:absolute;top:70px;left:0;right:0;background:#080d14;padding:18px;flex-direction:column;border-bottom:1px solid var(--line)}.menu{display:block}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.hero{padding-top:60px}.section{padding:52px 0}.features{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="container navin"><a class="brand" href="#home">CYBER<span>CHECK</span> 🔐</a><button class="menu" onclick="toggleMenu()">☰</button><nav class="links" id="links"><a href="#tools">Tools</a><a href="#security">Security</a><a href="#academy">Academy</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav></div></header>
+
+<main id="home">
+<section class="hero"><div class="container"><div class="badge">● PRIVACY-FIRST SECURITY TOOLKIT</div><h1>Check. Understand.<br><em>Protect.</em></h1><p>Simple cybersecurity tools for everyday users. Analyze passwords, inspect URLs, identify scam red flags and build better security habits — directly in your browser.</p><div class="actions"><a class="btn" href="#tools">Explore Tools</a><a class="btn secondary" href="#security">Security Check</a></div><div class="features"><div class="mini"><b>🔒 Local-first</b><span>Core checks run in your browser.</span></div><div class="mini"><b>⚡ Fast</b><span>No account required for V1 tools.</span></div><div class="mini"><b>📱 Mobile Ready</b><span>Responsive on phones and tablets.</span></div><div class="mini"><b>🎓 Learn</b><span>Understand the risks, not just alerts.</span></div></div></div></section>
+
+<section class="section" id="tools"><div class="container"><h2>Security Toolkit</h2><p class="sub">Practical checks for everyday cybersecurity.</p><div class="grid">
+<div class="card"><div class="toolicon">🔑</div><h3>Password Analyzer</h3><p>Estimate password strength without sending it anywhere.</p><button class="open" onclick="openTool('password')">Open Tool</button></div>
+<div class="card"><div class="toolicon">🌐</div><h3>URL Inspector</h3><p>Inspect visible URL indicators such as HTTPS, IP hosts and suspicious patterns.</p><button class="open" onclick="openTool('url')">Open Tool</button></div>
+<div class="card"><div class="toolicon">🚨</div><h3>Scam Detector</h3><p>Paste a message and scan it for common social-engineering red flags.</p><button class="open" onclick="openTool('scam')">Open Tool</button></div>
+<div class="card"><div class="toolicon">🛡️</div><h3>Security Score</h3><p>Answer a short checklist and get a practical security score.</p><button class="open" onclick="openTool('score')">Open Tool</button></div>
+<div class="card"><div class="toolicon">🔐</div><h3>2FA Guide</h3><p>Learn why multi-factor authentication matters and how to use it.</p><button class="open" onclick="showModal('2FA Guide','Use an authenticator app or a security key where supported. Prefer phishing-resistant methods such as passkeys or security keys for high-value accounts. Never share verification codes with another person.')">Learn</button></div>
+<div class="card"><div class="toolicon">📱</div><h3>Device Checklist</h3><p>Quick Android, iPhone and computer security checklist.</p><button class="open" onclick="showModal('Device Security Checklist','✓ Install operating-system updates\\n✓ Keep screen lock enabled\\n✓ Review app permissions\\n✓ Remove apps you do not use\\n✓ Avoid unknown APKs and cracked software\\n✓ Enable backups\\n✓ Use unique passwords + MFA\\n✓ Lock your device when unattended')">View</button></div>
+</div>
+<div id="toolbox" class="toolbox"></div></div></section>
+
+<section class="section" id="security"><div class="container"><h2>Personal Security Check</h2><p class="sub">A quick self-assessment. Your answers stay in this page and are not uploaded by this V1 demo.</p><div class="card"><div id="questions"></div><button class="btn" onclick="calculateScore()">Calculate My Score</button><div id="scoreResult"></div></div></div></section>
+
+<section class="section" id="academy"><div class="container"><h2>Cyber Academy</h2><p class="sub">Build foundational knowledge before touching advanced security tools.</p><div class="grid">
+<div class="card"><h3>🎣 Phishing</h3><p>Learn how attackers use urgency, impersonation and malicious links to manipulate users.</p></div>
+<div class="card"><h3>🧬 Malware</h3><p>Understand viruses, trojans, ransomware and why unknown software is risky.</p></div>
+<div class="card"><h3>🔏 Encryption</h3><p>Learn the difference between encryption, hashing and encoding.</p></div>
+<div class="card"><h3>🧠 Social Engineering</h3><p>Understand manipulation techniques and practical defenses.</p></div>
+<div class="card"><h3>🌐 HTTPS & DNS</h3><p>Understand what HTTPS protects and what it does not prove about a website.</p></div>
+<div class="card"><h3>🔑 Authentication</h3><p>Passwords, MFA, passkeys and security keys explained simply.</p></div>
+</div></div></section>
+
+<section class="section" id="about"><div class="container"><div class="card"><h2>About CyberCheck</h2><p class="sub">CyberCheck is designed as an accessible cybersecurity education and utility platform. The goal is to make useful security concepts understandable without overwhelming beginners.</p><p>Our tools are intended for <b>defensive and educational use</b>. Results are indicators, not guarantees. A URL can look normal and still be malicious, and a strong password score cannot guarantee account security.</p><p class="notice">Never paste private keys, recovery phrases, authentication codes, or other secrets into third-party websites.</p></div></div></section>
+
+<section class="section" id="faq"><div class="container"><h2>Frequently Asked Questions</h2><div class="faq">
+<details><summary>Does CyberCheck store my password?</summary><p>The V1 password analyzer processes the value in your browser and does not send it to a server. For maximum safety, do not use a real password while experimenting; test with a representative sample.</p></details>
+<details><summary>Can the URL Inspector prove a website is safe?</summary><p>No. It checks visible technical indicators and suspicious patterns. It cannot guarantee that a website is legitimate.</p></details>
+<details><summary>Is CyberCheck an antivirus?</summary><p>No. It is a cybersecurity toolkit and educational platform, not an antivirus, EDR or malware-removal product.</p></details>
+<details><summary>Do I need an account?</summary><p>No account is required for the client-side V1 tools.</p></details>
+<details><summary>Can I use CyberCheck on mobile?</summary><p>Yes. The interface is responsive and designed for mobile browsers.</p></details>
+<details><summary>Can CyberCheck check leaked passwords?</summary><p>Not in this offline V1. A production breach-check feature should use a reputable privacy-preserving service or k-anonymity approach rather than transmitting plaintext passwords.</p></details>
+</div></div></section>
+
+<section class="section" id="contact"><div class="container"><h2>Contact</h2><div class="contact"><div class="contactbox"><h3>Get in touch</h3><p>For feedback, security questions, partnerships or website issues:</p><a href="mailto:zeetaigamingoffical@gmail.com">zeetaigamingoffical@gmail.com</a></div><div class="contactbox"><h3>Responsible use</h3><p>Use CyberCheck only for systems, accounts and content you are authorized to inspect. Do not use it to invade privacy, bypass security or harm others.</p></div></div></div></section>
+</main>
+
+<footer class="footer"><div class="container">© <span id="year"></span> CyberCheck. Built for safer digital habits. <span style="float:right">Privacy-first • Educational</span></div></footer>
+<div class="modal" id="modal"><div class="modalbox"><button class="close" onclick="closeModal()">✕</button><h2 id="modalTitle"></h2><p id="modalText" style="white-space:pre-line;color:#aebfd1"></p></div></div>
+
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+function toggleMenu(){document.getElementById('links').classList.toggle('show')}
+function showModal(title,text){document.getElementById('modalTitle').textContent=title;document.getElementById('modalText').textContent=text;document.getElementById('modal').classList.add('show')}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+const box=document.getElementById('toolbox');
+function openTool(type){
+ box.classList.add('active');
+ if(type==='password') box.innerHTML=`<h3>🔑 Password Analyzer</h3><p class="notice">For safety, use a test password rather than a real account password.</p><input id="pw" type="password" placeholder="Enter a test password"><button class="btn" onclick="analyzePassword()">Analyze</button><div id="pwres" class="result"></div>`;
+ if(type==='url') box.innerHTML=`<h3>🌐 URL Inspector</h3><input id="url" placeholder="https://example.com/path"><button class="btn" onclick="analyzeURL()">Inspect URL</button><div id="urlres" class="result"></div>`;
+ if(type==='scam') box.innerHTML=`<h3>🚨 Scam Detector</h3><textarea id="scamtext" placeholder="Paste a suspicious SMS, email or message here..."></textarea><button class="btn" onclick="detectScam()">Scan Text</button><div id="scamres" class="result"></div>`;
+ if(type==='score') {box.innerHTML=`<h3>🛡️ Security Score</h3><div id="quickQuestions"></div><button class="btn" onclick="calculateMini()">Calculate</button><div id="minires" class="result"></div>`;renderMini()}
+ box.scrollIntoView({behavior:'smooth',block:'center'});
+}
+function analyzePassword(){
+ const p=document.getElementById('pw').value;let score=0, tips=[];
+ if(p.length>=12)score+=30;else tips.push('Use at least 12 characters.');
+ if(p.length>=16)score+=15;
+ if(/[a-z]/.test(p))score+=10;else tips.push('Add lowercase letters.');
+ if(/[A-Z]/.test(p))score+=10;else tips.push('Add uppercase letters.');
+ if(/[0-9]/.test(p))score+=10;else tips.push('Add numbers.');
+ if(/[^A-Za-z0-9]/.test(p))score+=15;else tips.push('Add symbols.');
+ if(!/(.)\\1\\1/.test(p))score+=10;else tips.push('Avoid repeated characters.');
+ let level=score>=85?'Strong':score>=65?'Good':score>=40?'Weak':'Very weak';
+ document.getElementById('pwres').innerHTML=`<div class="score">${score}/100</div><b>${level}</b><br><span class="${score>=65?'good':'warn'}">${tips.length?tips.join('\\n'): 'No obvious weakness detected by this basic heuristic.'}</span><div class="notice">This is a heuristic estimate, not a crack-time guarantee.</div>`;
+}
+function analyzeURL(){
+ const raw=document.getElementById('url').value.trim();let out=[];
+ try{
+  const u=new URL(raw);const host=u.hostname.toLowerCase();
+  out.push((u.protocol==='https:'?'✓ HTTPS is enabled':'⚠ No HTTPS — do not enter sensitive information.'));
+  out.push(`Host: ${host}`);
+  if(/^(\\d{1,3}\\.){3}\\d{1,3}$/.test(host))out.push('⚠ Host is an IP address.');
+  if(host.includes('xn--'))out.push('⚠ Punycode detected — inspect the domain carefully.');
+  if(raw.length>150)out.push('⚠ Very long URL.');
+  if((raw.match(/@/g)||[]).length)out.push('⚠ @ symbol found in URL.');
+  if((host.match(/-/g)||[]).length>=3)out.push('⚠ Multiple hyphens in hostname — investigate manually.');
+  if(!out.some(x=>x.startsWith('⚠')))out.push('✓ No basic suspicious indicators detected.');
+  document.getElementById('urlres').textContent=out.join('\\n')+'\\n\\nReminder: these checks cannot prove a site is safe.';
+ }catch(e){document.getElementById('urlres').textContent='Invalid URL. Include the full address, e.g. https://example.com';}
+}
+function detectScam(){
+ const t=document.getElementById('scamtext').value.toLowerCase();let flags=[];
+ const rules=[
+ [/urgent|immediately|act now|within \\d+ (minutes?|hours?)/,'Urgency or pressure'],
+ [/otp|verification code|one[- ]time password/,'Requests for authentication codes'],
+ [/password|passcode|recovery phrase|private key|seed phrase/,'Requests for highly sensitive credentials'],
+ [/send money|pay now|payment|fee|deposit|crypto|usdt|bitcoin/,'Money or crypto request'],
+ [/winner|won|prize|reward|free money|congratulations/,'Unexpected reward/prize claim'],
+ [/click (here|this)|open the link|verify your account/,'Link/action pressure'],
+ [/impersonat|support team|customer care|bank security/,'Possible impersonation']
+ ];
+ rules.forEach(r=>{if(r[0].test(t))flags.push('⚠ '+r[1])});
+ document.getElementById('scamres').innerHTML=flags.length?`<b class="warn">${flags.length} red flag(s) found</b>\\n${flags.join('\\n')}\\n\\nDo not share OTPs/passwords or send money based only on this message.`:`<b class="good">No common red flags detected.</b>\\nThis does NOT prove the message is legitimate. Verify through an official channel.`;
+}
+const qs=[
+['unique','Do you use unique passwords for important accounts?'],
+['mfa','Is MFA/2FA enabled on your important accounts?'],
+['update','Are your phone/computer and apps regularly updated?'],
+['backup','Do you maintain a backup of important data?'],
+['download','Do you avoid unknown/cracked software and APKs?'],
+['links','Do you verify suspicious links before opening them?']
+];
+function renderMini(){document.getElementById('quickQuestions').innerHTML=qs.map((q,i)=>`<label style="display:block;margin:12px 0"><input type="checkbox" id="m${i}"> ${q[1]}</label>`).join('')}
+function calculateMini(){let n=qs.reduce((a,q,i)=>a+(document.getElementById('m'+i).checked?1:0),0);let s=Math.round(n/qs.length*100);document.getElementById('minires').innerHTML=`<div class="score">${s}/100</div>${s>=80?'<span class="good">Good baseline.</span>':s>=50?'<span class="warn">Several improvements are available.</span>':'<span class="bad">Start with passwords, updates and MFA.</span>'}`}
+function calculateScore(){let arr=[['unique','Do you use unique passwords?'],['mfa','Do you use MFA/2FA?'],['update','Are your devices updated?'],['backup','Do you have backups?'],['download','Do you avoid cracked/unknown apps?'],['links','Do you verify suspicious links?']];document.getElementById('questions').innerHTML=arr.map((q,i)=>`<label style="display:block;margin:12px 0"><input type="checkbox" id="q${i}"> ${q[1]}</label>`).join('');document.querySelector('#security .btn').onclick=function(){let n=arr.filter((q,i)=>document.getElementById('q'+i).checked).length;let s=Math.round(n/arr.length*100);document.getElementById('scoreResult').innerHTML=`<div class="result"><div class="score">${s}/100</div>${s>=80?'Strong baseline — keep your habits consistent.':s>=50?'Moderate baseline — address the unchecked items.':'Begin with MFA, updates, unique passwords and backups.'}</div>`}}
+calculateScore();
+</script>
+</body>
+</html>
